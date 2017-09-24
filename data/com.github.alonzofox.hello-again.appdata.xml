@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2017 Dave Brue <davidbrue@gmail.com> -->
+<component type="desktop">
+    <id>com.github.alonzofox.hello-again.desktop</id>
+    <metadata_license>CC0</metadata_license>
+    <name>Hello Again</name>
+    <summary>Hello again tagline</summary>
+    <description>
+        <p>An app to say hello, again</p>
+    </description>
+</component>
