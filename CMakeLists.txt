@@ -10,31 +10,35 @@ set(EXEC_NAME "com.github.alonzofox.hello-again")
 set(RELEASE_NAME "A hello world.")
 set(VERSION "0.1")
 set(VERSION_INFO "whats up world")
+set(GETTEXT_PACKAGE "${CMAKE_PROJECT_NAME}")
 
 find_package(PkgConfig)
 
 pkg_check_modules(DEPS REQUIRED gtk+-3.0)
 
+add_definitions(-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
 add_definitions(${DEPS_CFLAGS})
 link_libraries(${DEPS_LIBRARIES})
 link_directories(${DEPS_LIBRARY_DIRS})
 
 find_package(Vala REQUIRED)
-include(Vala)
+include(ValaVersion)
 ensure_vala_version("0.16" MINIMUM)
 
 include(ValaPrecompile)
 vala_precompile(VALA_C ${EXEC_NAME}
-    src/hello_again.vala
+    src/hello-again.vala
 
 PACKAGES
     gtk+-3.0
 )
 
+add_subdirectory(po)
+
 add_executable(${EXEC_NAME} ${VALA_C})
 install(TARGETS ${EXEC_NAME} RUNTIME DESTINATION bin)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.alonzofox.hello-again.desktop DESTINATION ${DATADIR}/applications/)
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.aloznofox.hello-again.appdata.xml DESTINATION ${DATADIR}/metainfo/)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.alonzofox.hello-again.appdata.xml DESTINATION ${DATADIR}/metainfo/)
 
 
 
